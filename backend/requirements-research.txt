@@ -1,0 +1,8 @@
+# Only needed for HF dataset loading, DeBERTa fine-tuning and optional explainability.
+-r requirements.txt
+datasets>=2.18
+accelerate>=0.27
+sentencepiece>=0.2     # DeBERTa-v3 tokenizer
+protobuf
+captum>=0.7            # optional: Integrated Gradients (/explain method=integrated_gradients)
+shap>=0.45             # optional: not wired into the API; for notebook experiments

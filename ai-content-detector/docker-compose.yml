@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: .
+    ports: ["8000:8000"]
+    environment:
+      DEVICE: cpu
+      DATABASE_URL: sqlite:////app/data/detections.db
+      CORS_ORIGINS: http://localhost:8080,http://localhost:5173
+    volumes:
+      - ./data:/app/data
+      - ./results:/app/results
+      - hf_cache:/app/.hf_cache   # model downloads persist between runs
+  frontend:
+    build: ./frontend
+    ports: ["8080:80"]
+    depends_on: [backend]
+volumes:
+  hf_cache:
